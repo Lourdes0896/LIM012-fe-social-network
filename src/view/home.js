@@ -298,7 +298,6 @@ export default () => {
     btnAddImage.value = '';
   });
 
-  loadPostHome();
 
   loadPostHome();
   return sectionElem;
