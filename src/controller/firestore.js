@@ -36,6 +36,21 @@ export const savePost = (user, email, photo, date, datetime, content, privacy, u
     likes: [],
   });
 };
+
+
+export const loadPostHome = (callback) => {
+  firebase.firestore().collection('posts').where('privacy', '==', '0')
+    .orderBy('orderDate', 'desc')
+    .onSnapshot((querySanpshot) => {
+      const post = [];
+      querySanpshot.forEach((doc) => {
+        post.push({ id: doc.id, ...doc.data() });
+      });
+      callback(post);
+    });
+};
+
+
 export const editPost = (id, content) => firebase.firestore().collection('posts').doc(id).update({ content });
 export const deletePost = id => firebase.firestore().collection('posts').doc(id).delete();
 

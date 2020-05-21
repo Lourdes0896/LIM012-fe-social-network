@@ -12,10 +12,12 @@ export const modelProfile = (objProfile) => {
         <div class="name">
         <p id="editProfile" contenteditable="false"> ${objProfile.nameUser}</p>
         <p> Prof. Educ. Inicial</p></div>
+        <div class="nameEdit">
         <button class="hide" hidden id="btnSaveProfile">💾</button>
         <button class="hide" hidden id="btnCancelProfile">✖️</button>
-        <button class="btn-Editar-Perfil">Editar Perfil</button>
+       
     </div>
+    <button class="btn-Editar-Perfil">Editar Perfil</button> </div>
   </div>
 </div>`;
   return divElement;

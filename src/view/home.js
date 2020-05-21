@@ -88,7 +88,7 @@ export default () => {
 
   const f = new Date();
   const date = (`${f.getDate()}/${f.getMonth() + 1}/${f.getFullYear()}`);
-
+  // -----------------------------------------------------------------------------------------
   const loadPostHome = () => {
     const allPost = sectionElem.querySelector('#allPost');
     const userLogueado = firebase.auth().currentUser;

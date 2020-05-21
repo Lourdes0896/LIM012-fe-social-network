@@ -20,19 +20,28 @@ global.firebase = firebasemock.MockFirebaseSdk(
 
 describe('Registro de nuevo usuario', () => {
   it('Deberia poder registrarse el nuevo usuario', () => {
-    register('ejemplo@labo.com', '654321').then((user) => {
+    register('ejemplo@labo.com', '123456').then((user) => {
       expect(user.email).toBe('ejemplo@labo.com');
-      expect(user.password).toBe('654321');
+      expect(user.password).toBe('123456');
     });
   });
 });
 
 describe('Inicio de sesion', () => {
   it('Deberia iniciar sesión', () => {
-    logIn('prueba@gmail.com', '123456').then((user) => {
+    logIn('prueba@gmail.com', 'hola123').then((user) => {
       expect(user.email).toBe('prueba@gmail.com');
-      expect(user.password).toBe('123456');
+      expect(user.password).toBe('hola123');
     });
+  });
+});
+
+describe('currentUser', () => {
+  it('Reconocer current user', () => {
+    logIn('usuario@gmail.com', 'abc123')
+      .then((user) => {
+        expect(user.email).toBe('usuario@gmail.com');
+      });
   });
 });
 
@@ -49,7 +58,6 @@ describe('Inicio de Sesión con Google', () => {
       expect(user.isAnonymous).toBe(false);
     }));
 });
-
 /*
 describe('Inicio de Sesión con Facebook', () => {
   it('Deberia iniciar sesión Facebook', () => facebookAuth()
