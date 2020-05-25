@@ -39,13 +39,13 @@ global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled
 
 describe('Publicar post', () => {
   // eslint-disable-next-line no-unused-vars
-  it('Debería poder publicar un post', done => savePost('user3', 'Mirella', '', '0', '', [], '', '', '', 'prueba hola')
+  it('Debería poder publicar un post', done => savePost('user3', 'Mirella', '', '0', '', 'prueba hola', '', '', '', [])
     .then(() => {
       const callback = (post) => {
-        console.log (post);
-        // const result = post.find(element => element.post === 'prueba hola');
-        // // expect(result.uid).toBe('user3');
-        // // done();
+        const result = post.find(element => element.content === 'prueba hola');
+        console.log(result);
+        expect(result.user).toBe('user3');
+        done();
       };
       loadPostHome(callback);
     }));

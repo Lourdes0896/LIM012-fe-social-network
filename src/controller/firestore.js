@@ -1,10 +1,10 @@
 
-export const saveUser = (user) => {
+export const saveUser = ({ displayName, photoURL, email }) => {
   const db = firebase.firestore();
-  db.collection('usuarios').doc(user.email).set({
-    nameUser: user.displayName,
-    photoURL: user.photoURL,
-    emailUser: user.email,
+  db.collection('usuarios').doc(email).set({
+    nameUser: displayName,
+    photoURL,
+    emailUser: email,
   });
 };
 
@@ -37,9 +37,8 @@ export const savePost = (user, email, photo, date, datetime, content, privacy, u
   });
 };
 
-
 export const loadPostHome = (callback) => {
-  firebase.firestore().collection('posts').where('privacy', '==', '0')
+  firebase.firestore().collection('posts')
     .orderBy('orderDate', 'desc')
     .onSnapshot((querySanpshot) => {
       const post = [];
@@ -49,7 +48,6 @@ export const loadPostHome = (callback) => {
       callback(post);
     });
 };
-
 
 export const editPost = (id, content) => firebase.firestore().collection('posts').doc(id).update({ content });
 export const deletePost = id => firebase.firestore().collection('posts').doc(id).delete();
